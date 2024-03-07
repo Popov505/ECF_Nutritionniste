@@ -1,0 +1,235 @@
+/* Reset - START */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  text-decoration: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*Reset - END */
+
+/* Polices - START */
+@font-face {
+  font-family: 'Salsa', sans-serif;
+  src: url('./fonts/Salsa-Regular.ttf') format('truetype');
+
+  font-family: 'Handlee', sans-serif;
+  src: url('./fonts/Handlee-Regular.ttf') format('truetype');
+}
+/* Polices - END */
+
+
+/* Colors - START */
+:root {
+  --dark-green: #18534F;
+  --green: #226D68;
+  --pale-green: #ECF8F6;
+  --yellow: #FEEAA1;
+  --brown: #D6955B;
+}
+/* Colors - END */
+
+li {
+  margin: 0.7rem 0;
+}
+
+h2 {
+  padding: 0.5rem 0;
+}
+
+h3 {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.link {
+  /* Link dimensions */
+  height: fit-content;
+  width: auto;   
+  margin: 1rem 1rem;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+
+  /* Link colors */
+  background-color: var(--yellow);
+  color: var(--dark-green);
+  font: 0.8rem "Salsa", sans-serif;
+}
+
+.article_title {
+  font-family: "Salsa", sans-serif;
+  text-align: center;
+  background-color: var(--yellow);
+  color: var(--dark-green);
+  border-radius: 0.5rem;
+}
+
+.article_content {
+  font-family: "Handlee", sans-serif;
+  text-align: center;
+  padding: 0.7rem;
+  color: var(--pale-green);
+  border-radius: 0.5rem;
+}
+
+/* Header and Footer - START */
+header, footer {
+  /* Header dimensions */
+  height: fit-content;
+  width: 100%;  
+
+  /* Header colors */
+  background-color: var(--green);
+
+  /* Header arrangement */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 150px;
+}
+/* Header and Footer - END */
+
+/* Home page - START */
+.home_page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.home_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  width: 49.5%;
+
+}
+
+.photo {
+  height: 75%;
+  border-radius: 1rem;
+  margin: 1rem 0 0 0;
+}
+
+@media screen and (max-width: 760px) {
+  .home_article {
+    width: 100%;
+  }
+
+  .photo {
+    display: none;
+  }
+}
+/* Home page - END */
+
+/* Login page - START */
+.login_page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  width: 100%;
+}
+
+.label_input {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0;
+  gap: 3rem;
+}
+
+.article_title {
+  width: 100%;
+}
+/* Login page - END */
+
+/* Legal page and Confidentiality page - START */
+.legal_article, .confidentiality_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  width: 100%;
+}
+ .legal_div, .confidentiality_div {
+  display: flex;
+  flex-direction: column;
+  
+  font-family: "Handlee", sans-serif;
+  color: var(--pale-green);
+ }
+
+ .legal_section, .confidentiality_section {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+ }
+
+ .legal_logo, .legal_picture, .legal_recette, .confidentiality_part {
+  margin: 1rem 0;
+ }
+
+/* Legal page and Confidentiality page - END */
