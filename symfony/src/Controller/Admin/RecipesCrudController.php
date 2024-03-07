@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RecipesCrudController extends AbstractCrudController
 {
@@ -23,26 +24,15 @@ class RecipesCrudController extends AbstractCrudController
     {
         yield TextField::new('recipe_title', 'Titre');
         yield TextField::new('recipe_description', 'Description');
-        //yield TextField::new('recipe_image', 'Image');
+        yield TextareaField::new('imageFile', 'Image')->setFormType(VichImageType::class)->hideOnIndex();
         yield IntegerField::new('recipe_prep_duration', 'Temps de préparation');
         yield IntegerField::new('recipe_rest_duration','Temps de repos');
         yield IntegerField::new('recipe_cook_duration','Temps de cuisson');
-        yield TextareaField::new('recipe_ingredient', 'Ingrédients');
-        yield TextareaField::new('recipe_step', 'Etapes');
+        yield TextEditorField::new('recipe_ingredient', 'Ingrédients');
+        yield TextEditorField::new('recipe_step', 'Etapes');
         yield BooleanField::new('recipe_is_public', 'Recette publique?');
 
         yield AssociationField::new('recipe_diets', 'Régimes');
         yield AssociationField::new('recipe_allergens', 'Allergènes');
     }
-
-    /*
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
-    }
-    */
 }

@@ -381,3 +381,90 @@ class UsersCrudController extends AbstractCrudController
 
 
 Note : la ligne "$hash = $this->userPasswordHasher->hashPassword($this->getUser(), $password);" indique une erreur mais ça fonctionne
+
+
+Gestion des images : vich uploader bundle (https://github.com/dustin10/VichUploaderBundle/blob/master/docs/index.md)
+
+ - composer require vich/uploader-bundle
+     -  yes => y
+
+ - Dans le fichier config => packages => vich_uploader.yaml, ajouter le mapping :
+     -     mappings:
+        	recipes:
+            		uri_prefix: /images/recipes
+            		upload_destination: '%kernel.project_dir%/public/images/recipes'
+            		namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+ - Créer le dossier public => images => recipes : les fichiers seront uploadé dans ce dossier
+
+ - Dans le fichier src => Entity => Recipes.php, ajouter
+     - use Symfony\Component\HttpFoundation\File\File;
+     - use Vich\UploaderBundle\Mapping\Annotation as Vich;	dans la partie use
+     - #[Vich\Uploadable]					sous #[ORM\Entity...]
+
+ - Dans le fichier src => Entity => Recipes.php ajouter
+     - les propriétés (à la suite des autres propriétés)
+    		/* VichUploader properties - START */
+    		#[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'recipeImageName', size: 'recipeImageSize')]
+    		private ?File $imageFile = null;
+
+    		#[ORM\Column(nullable: true)]
+    		private ?string $recipeImageName = null;
+
+    		#[ORM\Column(nullable: true)]
+    		private ?int $recipeImageSize = null;
+
+    		#[ORM\Column(nullable: true)]
+    		private ?\DateTimeImmutable $recipeImageUpdatedAt = null;
+
+    		/* VichUploader properties - END */
+
+     - les méthodes (à la suite des autres méthodes)
+
+		/* VichUploader methods - START */
+
+    		public function setImageFile(?File $imageFile = null): void
+    		{
+        		$this->imageFile = $imageFile;
+
+        		if (null !== $imageFile) {
+            			// It is required that at least one field changes if you are using doctrine
+            			// otherwise the event listeners won't be called and the file is lost
+            			$this->recipeImageUpdatedAt = new \DateTimeImmutable();
+        		}
+    		}
+
+   		public function getImageFile(): ?File
+    		{
+       		return $this->imageFile;
+    		}
+
+    		public function setRecipeImageName(?string $recipeImageName): void
+    		{
+        		$this->recipeImageName = $recipeImageName;
+    		}
+
+    		public function getRecipeImageName(): ?string
+    		{
+        		return $this->recipeImageName;
+    		}
+
+   		public function setRecipeImageSize(?int $recipeImageSize): void
+    		{
+        		$this->recipeImageSize = $recipeImageSize;
+    		}
+
+    		public function getRecipeImageSize(): ?int
+    		{
+        		return $this->recipeImageSize;
+    		}
+
+    		/* VichUploader methods - END */
+
+ - Dans le fichier Admin => RecipesCrudController.php ajouter
+     - yield TextareaField::new('imageFile', 'Image')->setFormType(VichImageType::class)->hideOnIndex();
+
+ - faire la migration vers la base de données :
+     - symfony console make:migration
+     - symfony console doctrine:migrations:migrate -n
+

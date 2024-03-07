@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RecipesRepository::class)]
+#[Vich\Uploadable]
 class Recipes
 {
     #[ORM\Id]
@@ -48,6 +51,21 @@ class Recipes
 
     #[ORM\ManyToMany(targetEntity: Diets::class, inversedBy: 'diet_recipes')]
     private Collection $recipe_diets;
+
+    /* VichUploader properties - START */
+    #[Vich\UploadableField(mapping: 'recipes', fileNameProperty: 'recipeImageName', size: 'recipeImageSize')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $recipeImageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $recipeImageSize = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $recipeImageUpdatedAt = null;
+
+    /* VichUploader properties - END */
 
     public function __construct()
     {
@@ -241,4 +259,47 @@ class Recipes
 
         return $this;
     }
+
+    
+    /* VichUploader methods - START */
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->recipeImageUpdatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setRecipeImageName(?string $recipeImageName): void
+    {
+        $this->recipeImageName = $recipeImageName;
+    }
+
+    public function getRecipeImageName(): ?string
+    {
+        return $this->recipeImageName;
+    }
+
+    public function setRecipeImageSize(?int $recipeImageSize): void
+    {
+        $this->recipeImageSize = $recipeImageSize;
+    }
+
+    public function getRecipeImageSize(): ?int
+    {
+        return $this->recipeImageSize;
+    }
+
+    /* VichUploader methods - END */
+
+
 }
