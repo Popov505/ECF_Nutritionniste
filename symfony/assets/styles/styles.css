@@ -228,8 +228,100 @@ header, footer {
   margin: 1rem;
  }
 
- .legal_logo, .legal_picture, .legal_recette, .confidentiality_part {
+ .legal_logo, .legal_picture, .legal_recipe, .confidentiality_part {
   margin: 1rem 0;
  }
 
 /* Legal page and Confidentiality page - END */
+
+
+/* Recipes page - START */
+
+.recipes_main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 1%;
+
+  background-color: var(--pale-green);
+  width: 100%;
+}
+
+.recipes_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  
+  width: 70%;
+}
+
+.recipe_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  color: var(--pale-green);
+  width: 100%;
+}
+
+.recipe_title {
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--green);
+  color: var(--yellow);
+  width: 100%;
+  text-align: center;
+}
+
+.recipe_div {
+  display: flex;
+  flex-direction: row;
+}
+
+.recipe_text_div{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.recipe_text {
+  margin: 0.5rem 0;
+}
+
+.recipe_image {
+  width : 50%;
+  border-radius: 0.5rem;
+}
+
+.recipes_aside {
+  width: 30%;
+}
+
+.aside_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  color: var(--pale-green);
+  width: 100%;
+}
+
+.opinion_div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Recipes page - END */

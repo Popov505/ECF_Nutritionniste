@@ -65,6 +65,12 @@ class Recipes
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $recipeImageUpdatedAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $recipe_source = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $recipe_image_source = null;
+
     /* VichUploader properties - END */
 
     public function __construct()
@@ -300,6 +306,30 @@ class Recipes
     }
 
     /* VichUploader methods - END */
+
+    public function getRecipeSource(): ?string
+    {
+        return $this->recipe_source;
+    }
+
+    public function setRecipeSource(string $recipe_source): static
+    {
+        $this->recipe_source = $recipe_source;
+
+        return $this;
+    }
+
+    public function getRecipeImageSource(): ?string
+    {
+        return $this->recipe_image_source;
+    }
+
+    public function setRecipeImageSource(string $recipe_image_source): static
+    {
+        $this->recipe_image_source = $recipe_image_source;
+
+        return $this;
+    }
 
 
 }

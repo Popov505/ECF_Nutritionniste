@@ -10,7 +10,7 @@
     <h2 class='article_title'>Mentions légales</h2>
     <div class='legal_div'>
 
-        <section class='legal_section'>
+      <section class='legal_section'>
         <h3>Site fictif</h3>
         <div class='legal_logo'>
           <h4>But du site</h4>
@@ -45,93 +45,22 @@
 
       <section class='legal_section'>
         <h3>Recettes</h3>
-        <div class='legal_recette'>
+        <div class='legal_recipe'>
           <h4>Pâtes à la bolognaise</h4>
           <p>Recette : https://odelices.ouest-france.fr</p>
           <p>Image : -Rita-👩‍🍳 und 📷 mit ❤ de Pixabay</p>
         </div>
 
-        <div class='legal_recette'>
-          <h4>Salade de chou blanc à la japonaise</h4>
-          <p>Recette : https://www.cuisine-libre.org/salade-de-chou-blanc-a-la-japonaise</p>
-          <p>Image : </p>
-        </div>
+        {% for recipe in recipes %}
 
-        <div class='legal_recette'>
-          <h4>Salade de roquette au vinaigre balsamique</h4>
-          <p>Recette : https://www.cuisine-libre.org/salade-de-roquette</p>
-          <p>Image : </p>
-        </div>
+          <div class='legal_recipe'>
+            <h4>{{ recipe.recipetitle }}</h4>
+            <p>{{ recipe.recipesource }}</p>
+            <p>{{ recipe.recipeimagesource}}</p>
+          </div>
 
-        <div class='legal_recette'>
-          <h4>Salade de champignons de Paris au parmesan</h4>
-          <p>Recette : https://www.cuisine-libre.org/salade-de-champignons-de-paris-au-parmesan</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Salade argentine de cœurs de palmier</h4>
-          <p>Recette : https://www.cuisine-libre.org/salade-argentine-de-coeurs-de-palmier</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Mamaliga (polenta roumaine)</h4>
-          <p>Recette : https://www.cuisine-libre.org/mamaliga-polenta-roumaine</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Soupe japonaise « Gen Maï »</h4>
-          <p>Recette : https://www.cuisine-libre.org/soupe-japonaise-gen-mai</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Pasta alla carbonara</h4>
-          <p>Recette : https://www.cuisine-libre.org/pasta-alla-carbonara</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Pilaf express au chorizo</h4>
-          <p>Recette : https://www.cuisine-libre.org/pilaf-express-au-chorizo</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Gâteau à la banane et pépites de chocolat (sans lactose)</h4>
-          <p>Recette : https://www.cuisine-libre.org/gateau-a-la-banane-et-pepites-de-chocolat-sans-lactose</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Tarte aux pommes, pâte levée</h4>
-          <p>Recette : https://www.cuisine-libre.org/tarte-aux-pommes-pate-levee</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Gâteau de Carême (pitta nistissimi)</h4>
-          <p>Recette : https://www.cuisine-libre.org/gateau-de-careme-pitta-nistissimi</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Broyé du Poitou</h4>
-          <p>Recette : https://www.cuisine-libre.org/broye-du-poitou</p>
-          <p>Image : </p>
-        </div>
-
-        <div class='legal_recette'>
-          <h4>Biscuit au miel d’Ostara</h4>
-          <p>Recette : https://www.cuisine-libre.org/biscuit-au-miel-d-ostara</p>
-          <p>Image : </p>
-        </div>
+        {% endfor %}
       </section>
-    </div>
-    
-
   </article>
   
 {% endblock %}

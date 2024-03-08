@@ -1,0 +1,24 @@
+<article class='recipe_article'>
+  
+  <h4 class='recipe_title'>{{ recipe.recipetitle }}</h4>
+  {% if recipe.recipedescription != null %}
+    <p class='recipe_text'>Description : {{ recipe.recipedescription}}</p>
+  {% endif %}
+
+  <div class='recipe_div'>
+    <div class='recipe_text_div'>
+      <p class='recipe_text'>Temps de préparation : {{ recipe.recipeprepduration}} minutes</p>
+      {% if recipe.reciperestduration != 0 %}
+        <p class='recipe_text'>Temps de repos : {{ recipe.reciperestduration}} minutes</p>
+      {% endif %}
+      {% if recipe.recipecookduration != 0 %}
+        <p class='recipe_text'>Temps de cuisson : {{ recipe.recipecookduration}} minutes</p>
+      {% endif %}
+      <p class='recipe_text'>Ingrédients : <br>{{ recipe.recipeingredient}}</p>
+    </div>
+    <img class='recipe_image' src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="Photo of the recipe : {{ recipe.recipetitle }}">
+  </div>
+
+  <p class='recipe_text'>Etapes : <br>{{ recipe.recipestep}}</p>
+  
+</article>

@@ -462,9 +462,34 @@ Gestion des images : vich uploader bundle (https://github.com/dustin10/VichUploa
     		/* VichUploader methods - END */
 
  - Dans le fichier Admin => RecipesCrudController.php ajouter
-     - yield TextareaField::new('imageFile', 'Image')->setFormType(VichImageType::class)->hideOnIndex();
+     - yield TextareaField::new('imageFile', 'Image')->setFormType(VichImageType::class)->hideOnIndex();	// pour afficher l'image dans la création de recettes
+
+     - $mappingsParams = $this->getParameter('vich_uploader.mappings');
+     - $recipesImagePath = $mappingsParams['recipes']['uri_prefix'];
+     - yield ImageField::new('recipe_image_name')->setBasePath($recipesImagePath)->hideOnForm();		// pour afficher l'image dans le dashboard recettes
+        
+ - faire la migration vers la base de données :
+     - symfony console make:migration
+     - symfony console doctrine:migrations:migrate -n
+
+
+
+Rajout des sources (texte et image) dans la base de recettes
+
+ - symfony make:entity
+	- recipes
+	- recipe_source		string
+	- recipe_image_source	string
 
  - faire la migration vers la base de données :
      - symfony console make:migration
      - symfony console doctrine:migrations:migrate -n
 
+ - Ajouter les champs dans le CRUD
+	- yield TextField::new('recipe_source', 'Source de la recette');
+        - yield TextField::new('recipe_image_source', "Source de l'image");
+
+
+Afficher les recettes
+
+ - symfony console make:controller RecipeController

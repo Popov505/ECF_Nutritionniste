@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Les recettes de Sandrine Coupart, diététicienne et nutritionniste - Les recettes
+{% endblock %}
+
+{% block body %}
+
+  <main class='recipes_main'>
+
+    <section class='recipes_section'>
+      <h2 class='article_title'>Les recettes</h2>
+      
+      {% for recipe in recipes %}
+        {% include 'partials/recipes/_recipe_block.html.twig' %}
+      {% endfor %}
+
+    </section>
+
+    <aside class='recipes_aside'>
+
+      <article class='aside_article'>
+        <h2 class='article_title'>Les avis des patients</h2>
+        <p>{{ opinions[0].opinionmessage}}</p>
+        <div class='opinion_div'>
+          <p>{{ opinions[0].opinionusers}}</p>
+          <p>{{ opinions[0].opinionrate}}/5</p>
+        </div>
+      </article>
+
+      <article class='aside_article'>
+      <h2 class='article_title'>Laisser un commentaire</h2>
+        <div class='rate_div'>          
+          <label for="rate">Note : </label>
+          <input type="number" name="rate" id="rate" />
+        </div>
+        <div class='comment_div'>
+          <label for="comment">Commentaire : </label>
+          <input type="text" name="comment" id="comment" />
+        </div>
+        <button class='validate_button' type='button'>Envoyer commentaire</button>
+      </article>
+
+    </aside>
+
+  </main>
+  
+{% endblock %}
