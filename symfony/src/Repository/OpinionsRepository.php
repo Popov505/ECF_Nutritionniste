@@ -21,6 +21,19 @@ class OpinionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Opinions::class);
     }
 
+
+
+    public function getAverageRateByRecipeID($recipeId): float|null
+        {
+            return $this->createQueryBuilder('r')
+                ->select('AVG(r.opinion_rate) as averageRate')
+                ->where('r.opinion_recipes = :opinion_recipes')
+                ->setParameter('opinion_recipes', $recipeId)
+                ->getQuery()
+                ->getSingleScalarResult()
+            ;
+        }
+
     //    /**
     //     * @return Opinions[] Returns an array of Opinions objects
     //     */

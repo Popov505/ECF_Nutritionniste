@@ -8,40 +8,41 @@
 
   <main class='recipes_main'>
 
+    {% if user %}
+      <section class='recipes_user_section'>
+        <h2 class='article_title'>Moi</h2>
+        <article class='recipes_user_article'>
+          <p class='recipes_user_text'>Mes allergènes : </p>
+          <p class='recipes_user_text'>Mes régimes : </p>
+        </article>
+      </section>
+    {% endif %}
+
     <section class='recipes_section'>
       <h2 class='article_title'>Les recettes</h2>
       
       {% for recipe in recipes %}
-        {% include 'partials/recipes/_recipe_block.html.twig' %}
+        <article class='recipes_article'>
+          <h4 class='recipes_title'>{{ recipe.recipetitle }}</h4>
+          {% if recipe.recipedescription != null %}
+            <p class='recipes_text'>{{ recipe.recipedescription}}</p>
+          {% endif %}
+
+          {% if recipe.recipeImageName %}
+            <img class='recipes_image' src="{{ vich_uploader_asset(recipe, 'imageFile') }}" alt="Photo of the recipe : {{ recipe.recipetitle }}">
+          {% else %}
+            <img class='recipes_image' src="{{ asset('images/logo.svg') }}" alt="Photo of the recipe : {{ recipe.recipetitle }}">
+          {% endif %}
+
+          <p class='recipes_text'>Allergènes de la recette : </p>
+          <p class='recipes_text'>Régimes de la recette : </p>
+
+          <!-- Page of the recipe -->
+          <a class="link" href="{{ path('app_show_recipe', {'id': recipe.id}) }}">Voir la recette</a>
+        </article>
       {% endfor %}
 
     </section>
-
-    <aside class='recipes_aside'>
-
-      <article class='aside_article'>
-        <h2 class='article_title'>Les avis des patients</h2>
-        <p>{{ opinions[0].opinionmessage}}</p>
-        <div class='opinion_div'>
-          <p>{{ opinions[0].opinionusers}}</p>
-          <p>{{ opinions[0].opinionrate}}/5</p>
-        </div>
-      </article>
-
-      <article class='aside_article'>
-      <h2 class='article_title'>Laisser un commentaire</h2>
-        <div class='rate_div'>          
-          <label for="rate">Note : </label>
-          <input type="number" name="rate" id="rate" />
-        </div>
-        <div class='comment_div'>
-          <label for="comment">Commentaire : </label>
-          <input type="text" name="comment" id="comment" />
-        </div>
-        <button class='validate_button' type='button'>Envoyer commentaire</button>
-      </article>
-
-    </aside>
 
   </main>
   

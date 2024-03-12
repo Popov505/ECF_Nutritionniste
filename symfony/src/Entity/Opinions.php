@@ -20,7 +20,7 @@ class Opinions
     #[ORM\Column]
     private ?int $opinion_rate = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $opinion_is_validated = null;
 
     #[ORM\ManyToOne(inversedBy: 'user_opinions')]

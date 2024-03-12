@@ -21,6 +21,20 @@ class RecipesRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipes::class);
     }
 
+    /* Filter function (not working)
+    public function findRecipes($allergenId = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->leftJoin('m.recipe_allergens', 'g');
+        if ($allergenId !== null) {
+            $queryBuilder->where('g.id = :allergenId')
+                ->setParameter('allergenID', $allergenId);
+        }
+        return $queryBuilder->getQuery()->getResult();
+    }
+    */
+
+
     //    /**
     //     * @return Recipes[] Returns an array of Recipes objects
     //     */

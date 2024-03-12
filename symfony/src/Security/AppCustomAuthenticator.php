@@ -46,6 +46,10 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
+        } else if ($targetPath = $request->getSession()->get('previous_url')) {
+            return new RedirectResponse($targetPath);
+        } else {
+            return new RedirectResponse('/');
         }
 
         // For example:

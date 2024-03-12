@@ -133,6 +133,18 @@ header, footer {
 .logo {
   height: 150px;
 }
+
+.user_label {
+  height: fit-content;
+  width: auto;   
+  margin: 1rem 1rem;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+
+  background-color: var(--brown);
+  color: var(--pale-green);
+  font: 1rem "Salsa", sans-serif;
+}
 /* Header and Footer - END */
 
 /* Home page - START */
@@ -239,6 +251,94 @@ header, footer {
 
 .recipes_main {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1%;
+
+  background-color: var(--pale-green);
+  width: 100%;
+}
+
+/* Recipes page : user informations - START */
+.recipes_user_section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.recipes_user_article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+/* Recipes page : user informations - END*/
+
+/* Recipes page : list of recipes - START */
+.recipes_section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+  border-radius: 0.5rem;
+  
+  width: 100%;
+}
+
+.recipes_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  color: var(--pale-green);
+  width: 24.5%;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .recipes_article {
+    width: 49.5%;
+  }
+}
+
+.recipes_title {
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--green);
+  color: var(--yellow);
+  width: 100%;
+  text-align: center;
+}
+
+.recipes_text {
+  padding: 0.5rem;
+}
+
+.recipes_image {
+  width : 80%;
+  border-radius: 0.5rem;
+}
+/* Recipes page : list of recipes - END */
+
+/* Recipes page - END */
+
+
+
+/* Show recipe page - START */
+
+.recipe_main {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: start;
@@ -248,28 +348,46 @@ header, footer {
   width: 100%;
 }
 
-.recipes_section {
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .recipe_main {
+    flex-direction: column;
+  }
+}
+
+.recipe_section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: start;
+  gap: 1%;
   border-radius: 0.5rem;
   
   width: 70%;
 }
 
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .recipe_section {
+    width: 100%;
+  }
+}
+
 .recipe_article {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
 
   margin: 0.5rem 0;
   border-radius: 0.5rem;
   background-color: var(--brown);
   color: var(--pale-green);
   width: 100%;
+}
+
+.recipe_inner_section {
+  padding: 1rem;
 }
 
 .recipe_title {
@@ -287,10 +405,13 @@ header, footer {
   flex-direction: row;
 }
 
-.recipe_text_div{
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .recipe_div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .recipe_text {
@@ -302,11 +423,53 @@ header, footer {
   border-radius: 0.5rem;
 }
 
-.recipes_aside {
+.recipe_text_div{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .recipe_text_div {
+    width: 100%;
+  }
+}
+
+.recipe_aside {
   width: 30%;
 }
 
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .recipe_aside {
+    width: 100%;
+  }
+}
+
 .aside_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  color: var(--pale-green);
+  width: 100%;
+}
+
+.opinion_title {
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--green);
+  color: var(--yellow);
+  width: 100%;
+  text-align: center;
+}
+
+.opinion_section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -324,4 +487,53 @@ header, footer {
   gap: 1rem;
 }
 
-/* Recipes page - END */
+.form_div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Show recipe page - END */
+
+
+/* Opinion - START */
+/* Stars instead of integers for the rate - START */
+.rate {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: left;
+}
+
+.rate input[type="radio"] {
+  display: none;
+}
+
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate.enabled:not(:checked) > label:hover,
+.rate.enabled:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate.enabled > input:checked + label:hover,
+.rate.enabled > input:checked + label:hover ~ label,
+.rate.enabled > input:checked ~ label:hover,
+.rate.enabled > input:checked ~ label:hover ~ label,
+.rate.enabled > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+/* Stars instead of integers for the rate - END */
+
+/* Opinion - END */

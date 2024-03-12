@@ -52,6 +52,15 @@ Configurer le système d'authentification
      - Paramètres par défauts (x3)
      - 0 activate when the user checks a box
 
+ - Dans le fichier AppCustomAuthenticator.php, modifier la fonction onAuthentication Success
+	-     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    		{
+        	if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+           	 	return new RedirectResponse($targetPath);
+        	} else {
+            		return new RedirectResponse('/');
+        	}
+
 Ajouter les règles de contrôle d'accès
  - dans le fichier config => packages => security.yaml : - { path: ^/admin, roles: ROLE_ADMIN }
 
@@ -493,3 +502,62 @@ Rajout des sources (texte et image) dans la base de recettes
 Afficher les recettes
 
  - symfony console make:controller RecipeController
+
+
+
+Formulaire
+
+ - symfony console make:form
+	- name : OpinionType
+	- entité : Opinions
+
+ - Dans la fonction show_recipe du fichier RecipesController.php, ajouter
+	- $opinion = new Opinions();					Avant le render
+        - $form = $this->createForm(OpinionType::class, $opinion);	Avant le render
+	- 'form' => $form, 						Dans le render
+
+ - Dans le dossier partials, créer un nouveau dossier opinion et créer un nouveau fichier _form.html.twig dans ce sous dossier.
+	- {{ form_start(form) }}
+  		- {{ form_widget(form)}}
+
+  		- <button class='link'>Enregistrer</button>
+  
+	- {{ form_end(form) }}
+
+
+
+
+Afficher la notre moyenne
+
+ - Dans le fichier OpinionsRepository.php, ajouter la fonction (en s'appuyant sur les noms du fichier Opinions.php)
+	public function getAverageRateByRecipeID($recipeId): float|null
+        	{
+            		return $this->createQueryBuilder('r')
+                		->select('AVG(r.opinion_rate) as averageRate')
+                		->where('r.opinion_recipes = :opinion_recipes')
+                		->setParameter('opinion_recipes', $recipeId)
+                		->getQuery()
+                		->getSingleScalarResult()
+            		;
+        	}
+
+ - Dans le fichier RecipeController.php, ajouter
+	// Average rate : linked to OpinionsRepository.php function getAverageRateByRecipeID
+        $averageRate = $opinionsRepository->getAverageRateByRecipeID($recipe->getId());
+
+	'averageRate' => $averageRate,		(dans le render)
+
+ - Dans le fichier show_recipe_page.html.twig
+	<!-- Display of the average rate -->
+        {% if averageRate %}
+          <p>Note moyenne : {{ averageRate }}/5</p>
+        {% else %}
+          <p>Il n'y a pas encore de note</p>
+        {% endif %}
+
+
+
+Filtrer les recettes
+
+ - Dans le fichier 
+	
