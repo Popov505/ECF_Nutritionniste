@@ -505,7 +505,7 @@ Afficher les recettes
 
 
 
-Formulaire
+Formulaire d'avis des recettes
 
  - symfony console make:form
 	- name : OpinionType
@@ -557,7 +557,30 @@ Afficher la notre moyenne
 
 
 
-Filtrer les recettes
+Formulaire d'opinion
 
- - Dans le fichier 
+ - symfony console make:form
+	- name : ContactType
+	- entité : Contacts
+
+ - symfony console make:controller
+	- name : ContactController
+ 
+ - modifier le nom du template en show_contact_page.html.twig
+
+ - Dans la fonction show_recipe du fichier RecipesController.php, ajouter
+	$contact = new Contacts();						Avant le render
+        $contactForm = $this->createForm(ContactType::class, $contact);		Avant le render
+	'contactForm' => $contactForm, 						Dans le render
+
+
+
+*** à faire
+ - Dans le dossier partials, créer un nouveau dossier opinion et créer un nouveau fichier _form.html.twig dans ce sous dossier.
+	- {{ form_start(form) }}
+  		- {{ form_widget(form)}}
+
+  		- <button class='link'>Enregistrer</button>
+  
+	- {{ form_end(form) }}
 	

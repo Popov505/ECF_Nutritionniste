@@ -537,3 +537,57 @@ header, footer {
 /* Stars instead of integers for the rate - END */
 
 /* Opinion - END */
+
+
+/* Opinion - START */
+
+.contact_main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  background-color: var(--pale-green);
+  width: 100%;
+}   
+.contact_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--brown);
+  color: var(--pale-green);
+  width: 100%;
+}
+
+.contact_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px) {
+  .contact_section {
+    flex-direction: column;
+  }
+}
+
+.contact_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contact_field {
+  width: 100%;
+  margin: 1rem;
+}
+
+
+/* Opinion - END */
