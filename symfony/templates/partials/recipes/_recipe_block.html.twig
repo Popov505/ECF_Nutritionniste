@@ -33,5 +33,13 @@
     </div>
 
     <p class='recipe_text'>Etapes : <br>{{ recipe.recipestep | raw }}</p>
+  
+    <div class='recipe_sources'>
+      <ul> Sources
+        <li>Image : {{ recipe.recipeimagesource }}</li>
+        <li>Recette : <a class='recipe_sources' href={{ recipe.recipesource }} target="_blank">{{ recipe.recipesource }}</a></li>
+      <ul>
+    </div>
+  
   </section>
 </article>

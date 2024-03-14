@@ -158,18 +158,42 @@ header, footer {
 .home_article {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  align-items: center;
   margin: 0.5rem 0;
   border-radius: 0.5rem;
   background-color: var(--brown);
   width: 49.5%;
-
 }
 
-.photo {
-  height: 75%;
+.home_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: var(--pale-green);
+}
+
+.home_figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home_photo {
   border-radius: 1rem;
-  margin: 1rem 0 0 0;
+  padding: 1rem;
+}
+
+figcaption {
+  color: var(--green);
+  padding: 0 1rem 1rem 1rem;
+  visibility: collapse;
+  }
+   
+figure:hover figcaption {
+  visibility: visible;
 }
 
 @media screen and (max-width: 760px) {
@@ -177,7 +201,7 @@ header, footer {
     width: 100%;
   }
 
-  .photo {
+  .home_photo {
     display: none;
   }
 }
@@ -260,26 +284,6 @@ header, footer {
   width: 100%;
 }
 
-/* Recipes page : user informations - START */
-.recipes_user_section {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.recipes_user_article {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-/* Recipes page : user informations - END*/
-
 /* Recipes page : list of recipes - START */
 .recipes_section {
   display: flex;
@@ -321,14 +325,36 @@ header, footer {
   text-align: center;
 }
 
+.recipes_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: var(--pale-green);
+}
+
 .recipes_text {
   padding: 0.5rem;
 }
 
-.recipes_image {
-  width : 80%;
-  border-radius: 0.5rem;
+.recipes_photo {
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
 }
+
+.recipes_sources {
+  color: var(--green);
+  padding: 0 1rem 1rem 1rem;
+  visibility: collapse;
+  }
+
+.recipes_article:hover .recipes_sources {
+  visibility: visible;
+}
+
+
 /* Recipes page : list of recipes - END */
 
 /* Recipes page - END */
@@ -434,6 +460,16 @@ header, footer {
   .recipe_text_div {
     width: 100%;
   }
+}
+
+.recipe_sources {
+  color: var(--green);
+  padding: 0 1rem 1rem 1rem;
+  visibility: collapse;
+  }
+
+.recipe_article:hover .recipe_sources {
+  visibility: visible;
 }
 
 .recipe_aside {
